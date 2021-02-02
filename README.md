@@ -20,12 +20,12 @@ Then clone googler from github
 git clone https://github.com/jarun/googler.git
 ```
 
-Then go to the directory and build it
+Then go to the directory and build it if needed
 
 ```bash
 cd googler/
-
-Then make the package if needed
+make
+```
 
 Then you can use googler by
 
@@ -36,5 +36,5 @@ Path/to/googler/googler -options
 Following will google all the genes in the tsv file, select top 5 hits and check whether they have something to do with the keywords gene, sex and save the output in a file named after the gene
 
 ```bash
-for gene in $(cat WY_uniq_genes.tsv); do ../googler/googler -n 5 $gene | grep 'gene\|sex' * >google_hits/$gene & done
+for gene in $(cat test_genes.tsv); do echo "\n"| ../googler/googler -n 5 $gene | grep 'gene\|sex'>google_hits/$gene ; echo checked $gene; done
 ```
