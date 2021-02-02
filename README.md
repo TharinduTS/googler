@@ -1,6 +1,6 @@
 # GOOGLER
 
-Make a uniq gene list
+Make a unique gene list
 
 ```
 cat XT7_WY_fmt6_out | cut -f 2 | uniq > WY_uniq_genes.tsv
@@ -32,9 +32,22 @@ Then you can use googler by
 ```bash
 Path/to/googler/googler -options
 ```
+Run the following changing the path to googler,
+this will google all the genes in the tsv file, select top 5 hits and check whether they have something to do with the keywords gene, sex and save the output in a file named after the gene
+then it will separate files with hits ( by checking there size /non zero) and move them to a separate directory
 
-Following will google all the genes in the tsv file, select top 5 hits and check whether they have something to do with the keywords gene, sex and save the output in a file named after the gene
+
 
 ```bash
-for gene in $(cat test_genes.tsv); do echo "\n"| ../googler/googler -n 5 $gene | grep 'gene\|sex'>google_hits/$gene ; echo checked $gene; done
+echo please enter your file name WITH file format :  ;read filename; echo your search results are in $filename; mkdir ${filename%%.tsv}; for gene in $(cat $filename); do echo "\n"| ../googler/googler -n 5 $gene | grep 'gene\|sex'>${filename%%.tsv}/$gene ; echo checked $gene; done
 ```
+
+Then run following to separate genes with no hits
+```
+cd ${filename%%.tsv}
+mkdir files_with_no_hits
+find . -type f -maxdepth 1 -size -5c -exec mv {} files_with_no_hits/ \;
+
+cd ..
+```
+
