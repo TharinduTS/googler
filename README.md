@@ -32,16 +32,15 @@ Then you can use googler by
 ```bash
 Path/to/googler/googler -options
 ```
-Run the following changing the path to googler,
-this will google all the genes in the tsv file as gene $gene_name, select top 15 hits and check whether they have something to do with the keyword ‘sex’ and save the output in a file named after the gene
+Save this in as a script Run the following CHANGING the path to googler,
+this will google all the genes in the tsv file as gene $gene gene_name function, select top 15 hits and check whether they have something to do with the keyword ‘sex’ and save the output in a file named after the gene
+
+then it will seperate files with a hit from the rest
 
 
 ```bash
-echo please enter your file name WITH file format :  ;read filename; echo your search results are in $filename; mkdir ${filename%%.tsv}; for gene in $(cat $filename); do echo "\n"| ../googler/googler -n 15 $gene gene | grep 'sex'>${filename%%.tsv}/$gene ; echo checked $gene; done
-```
+echo please enter your file name WITH file format :  ;read filename; echo your search results are in $filename; mkdir ${filename%%.tsv}; for gene in $(cat $filename); do echo "\n"| ../googler/googler -n 15 $gene gene function | grep 'sex'>${filename%%.tsv}/$gene ; echo checked $gene; done
 
-Then run following to separate genes with no hits
-```
 cd ${filename%%.tsv}
 mkdir files_with_no_hits
 find . -type f -maxdepth 1 -size -5c -exec mv {} files_with_no_hits/ \;
