@@ -58,6 +58,8 @@ echo Please enter the file name to split and search:  ; read filename_with_forma
 
 Then you can check for results in all of the the splitted directories all together by
 
+**change WY into whatever the genotype before running**
+
 ```bash
-for i in WZ_splitted*/; do cd $i;ls;cd ..; done
+echo -en "\n" ; for i in WY_splitted*/; do cd $i; ls -p | grep -v / ;cd ..; done;echo -en "\n"; echo These are all the files with hits ; echo files without hits are in directories labelled no_hits; echo -en "\n"
 ```
