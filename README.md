@@ -48,3 +48,9 @@ find . -type f -maxdepth 1 -size -5c -exec mv {} files_with_no_hits/ \;
 
 cd ..
 ```
+
+# * when you use large lists, google may banne your ip due to unusual activity. In that case use a vpn and use the following command to split your csv into smaller files and then google them
+
+```bash
+split -b1k WZ_uniq_genes.tsv
+```
