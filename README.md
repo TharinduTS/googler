@@ -32,7 +32,8 @@ Then you can use googler by
 ```bash
 Path/to/googler/googler -options
 ```
-Save this in as a script Run the following CHANGING the path to googler,
+# search_genes.sh
+Save this as a script named search_genes.sh CHANGING the path to googler,
 this will google all the genes in the tsv file as gene $gene gene_name function, select top 15 hits and check whether they have something to do with the keyword ‘sex’ and save the output in a file named after the gene
 
 then it will seperate files with a hit from the rest
@@ -48,25 +49,15 @@ find . -type f -maxdepth 1 -size -5c -exec mv {} files_with_no_hits/ \;
 cd ..
 ```
 
-# * when you use large lists, google may banne your ip due to unusual activity. In that case use a vpn and use the following command to split your csv into smaller files 
+# * when you use large lists, google may bann your ip due to unusual activity. In that case use a vpn , save the following as a bash script and then run it. ***you should have saved above script as search_genes.sh before running this **
+
 
 ```bash
-split -l100  WZ_uniq_genes.tsv WZ_splitted_
-```
-This splits file 'WZ_uniq_genes.tsv' into files with 100 lines in each and names them starting with WZ
-
-Then use following to rename all the files with .tsv and then run the googler
-
-```bash
-for i in WZ_splitted*; do mv $i $i.tsv;done
-```
-Then you can search sets of 100 lines with 5 second gaps like following (so there is less chance of google banning you)
-
-```bash
-for i in WZ_splitted_*.tsv; do echo $i|bash search_genes.sh;sleep 5; done 
+echo Please enter the file name to split and search:  ; read filename_with_format ; echo splitting and searching $filename_with_format; echo all files with hits will be collected in XXX_all_hits;echo -en "\n";echo output files will be stored in directories begining with ${filename_with_format%%_uniq_genes.tsv} ;echo -en "\n" ; split -l100 $filename_with_format ${filename_with_format%%_uniq_genes.tsv}_splitted_ ; for i in ${filename_with_format%%_uniq_genes.tsv}_splitted*; do mv $i $i.tsv;done ; for i in ${filename_with_format%%_uniq_genes.tsv}_splitted_*.tsv; do echo $i|bash search_genes.sh;sleep 5; done 
 ```
 
-Then you can check for results in all of them all together by
+Then you can check for results in all of the the splitted directories all together by
+
 ```bash
 for i in WZ_splitted*/; do cd $i;ls;cd ..; done
 ```
