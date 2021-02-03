@@ -48,7 +48,7 @@ find . -type f -maxdepth 1 -size -5c -exec mv {} files_with_no_hits/ \;
 cd ..
 ```
 
-# * when you use large lists, google may banne your ip due to unusual activity. In that case use a vpn and use the following command to split your csv into smaller files and then google them
+# * when you use large lists, google may banne your ip due to unusual activity. In that case use a vpn and use the following command to split your csv into smaller files 
 
 ```bash
 split -l100  WZ_uniq_genes.tsv WZ_splitted_
@@ -59,3 +59,9 @@ Then use following to rename all the files with .tsv and then run the googler
 
 '''
 for i in WZ_splitted*; do mv $i $i.tsv;done
+```
+Then you can search sets of 100 lines with 5 second gaps like following (so there is less chance of google banning you)
+
+```
+for i in WZ_splitted_*.tsv; do echo $i|bash search_genes.sh;sleep 5; done 
+```
