@@ -57,16 +57,16 @@ This splits file 'WZ_uniq_genes.tsv' into files with 100 lines in each and names
 
 Then use following to rename all the files with .tsv and then run the googler
 
-'''
+'''bash
 for i in WZ_splitted*; do mv $i $i.tsv;done
 ```
 Then you can search sets of 100 lines with 5 second gaps like following (so there is less chance of google banning you)
 
-```
+```bash
 for i in WZ_splitted_*.tsv; do echo $i|bash search_genes.sh;sleep 5; done 
 ```
 
 Then you can check for results in all of them all together by
-```
+```bash
 for i in WZ_splitted*/; do cd $i;ls;cd ..; done
 ```
