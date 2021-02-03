@@ -52,5 +52,11 @@ cd ..
 # * when you use large lists, google may banne your ip due to unusual activity. In that case use a vpn and use the following command to split your csv into smaller files and then google them
 
 ```bash
-split -b1k WZ_uniq_genes.tsv
+split -l100  WZ_uniq_genes.tsv WZ_splitted_
 ```
+This splits file 'WZ_uniq_genes.tsv' into files with 100 lines in each and names them starting with WZ
+
+Then use following to rename all the files with .tsv and then run the googler
+
+'''
+for i in WZ_splitted*; do mv $i $i.tsv;done
