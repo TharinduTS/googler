@@ -55,7 +55,7 @@ cd ..
 ```bash
 echo Please enter the file name to split and search:  ; read filename_with_format ; echo splitting and searching $filename_with_format; echo all files with hits will be collected in XXX_all_hits;echo -en "\n";echo output files will be stored in directories begining with ${filename_with_format%%_uniq_genes.tsv} ;echo -en "\n" ; split -l100 $filename_with_format ${filename_with_format%%_uniq_genes.tsv}_splitted_ ; for i in ${filename_with_format%%_uniq_genes.tsv}_splitted*; do mv $i $i.tsv;done ; for i in ${filename_with_format%%_uniq_genes.tsv}_splitted_*.tsv; do echo $i|bash search_genes.sh;sleep 5; done 
 
-echo -en "\n" ; for i in ${filename_with_format%%_uniq_genes.tsv}_splitted*/; do cd $i; ls -p | grep -v / ;cd ..; done;echo -en "\n"; echo These are all the files with hits ; echo files without hits are in directories labelled no_hits ; echo if no files are listed there were no hits; echo -en "\n"
+echo -en "\n" ; echo Final list of hits:   ; for i in ${filename_with_format%%_uniq_genes.tsv}_splitted*/; do cd $i; ls -p | grep -v / ;cd ..; done;echo -en "\n"; echo These are all the files with hits ; echo files without hits are in directories labelled no_hits ; echo if no files are listed there were no hits; echo -en "\n"
 ```
 
 Then you can check for results in all of the the splitted directories all together by
@@ -63,5 +63,5 @@ Then you can check for results in all of the the splitted directories all togeth
 **change WY into whatever the genotype before running**
 
 ```bash
-echo -en "\n" ; for i in WY_splitted*/; do cd $i; ls -p | grep -v / ;cd ..; done;echo -en "\n"; echo These are all the files with hits ; echo files without hits are in directories labelled no_hits; echo -en "\n"
+echo -en "\n" ; echo Final list of hits:   ; for i in WY_splitted*/; do cd $i; ls -p | grep -v / ;cd ..; done;echo -en "\n"; echo These are all the files with hits ; echo files without hits are in directories labelled no_hits; echo -en "\n"
 ```
