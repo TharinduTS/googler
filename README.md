@@ -65,3 +65,8 @@ Then you can search sets of 100 lines with 5 second gaps like following (so ther
 ```
 for i in WZ_splitted_*.tsv; do echo $i|bash search_genes.sh;sleep 5; done 
 ```
+
+Then you can check for results in all of them all together by
+```bash
+for i in WZ_splitted*/; do cd $i;ls;cd ..; done
+```
